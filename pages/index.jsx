@@ -1,6 +1,23 @@
+//React
+import { useState } from "react";
 import Head from 'next/head';
 
+//Functions
+import getRandomNumberBetween from '../functions/getRandomNumberBetween';
+
+
 const Home = () => {
+  let [usersChoice, setUsersChoice] = useState('');
+  let [cpusChoice, setCpusChoice] = useState('');
+  const choices = ['rock', 'paper', 'scissors'];
+
+  const handlerClick = value => {
+    const cpuChoice = getRandomNumberBetween(0, 2);
+    const realCpuChoice = choices[cpuChoice];
+		setUsersChoice(value);
+    setCpusChoice(realCpuChoice);
+	};
+
   return (
     <div className='container'>
       <Head>
@@ -19,23 +36,23 @@ const Home = () => {
         </section>
 
         <section className='grid'>
-          <div className='card'>
+          <div className='card' onClick={() => handlerClick(choices[0])}>
             <div className="image_content">
               <img src='/rock.svg' alt='Rock' className='rock' />
             </div>
             <h3>Rock</h3>
           </div>
 
-          <div className='card'>
+          <div className='card' onClick={() => handlerClick(choices[1])}>
             <div className="image_content">
-              <img src='/paper.svg' alt='Rock' className='rock' />
+              <img src='/paper.svg' alt='Paper' className='paper' />
             </div>
             <h3>Papper</h3>
           </div>
 
-          <div className='card'>
+          <div className='card' onClick={() => handlerClick(choices[2])}>
             <div className="image_content">
-              <img src='/scissors.svg' alt='Rock' className='rock' />
+              <img src='/scissors.svg' alt='Scissors' className='scissors' />
             </div>
             <h3>Scissors</h3>
           </div>
